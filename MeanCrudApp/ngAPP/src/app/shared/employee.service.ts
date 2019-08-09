@@ -23,23 +23,23 @@ export class EmployeeService {
   constructor(private http: HttpClient) { }
 
   // post data to server through http post request
-  postEmployee(emp: Employee) {
-    return this.http.post(this.baseURL, emp)
+  postEmployee(emp: Employee):Observable<Employee> {
+    return this.http.post<Employee>(this.baseURL, emp)
   }
 
   // Fetch all data from server
-  getEmployeeList() {
-    return this.http.get(this.baseURL);
+  getEmployeeList():Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.baseURL);
   }
 
   // Update employee data from database
-  putEmployee(emp: Employee) {
-    return this.http.put(this.baseURL + `/${emp._id}`, emp);
+  putEmployee(emp: Employee):Observable<Employee> {
+    return this.http.put<Employee>(this.baseURL + `/${emp._id}`, emp);
   }
 
   // Delete employee data from database
-  deleteEmployee(empID: any) {
-    return this.http.delete(this.baseURL + `/${empID}`);
+  deleteEmployee(empID: any):Observable<Employee> {
+    return this.http.delete<Employee>(this.baseURL + `/${empID}`);
   }
 
 }

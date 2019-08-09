@@ -8,13 +8,13 @@
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" class="form-control" autocomplete="off"
-              name="name" #name = 'ngModel' 
+              name="name" #name = 'ngModel' required
               [(ngModel)] = 'empService.selectedEmployee.name'>
             </div>
 
             <div class="form-group">
               <label for="position">Position</label>
-              <input type="text" class="form-control" 
+              <input type="text" class="form-control" required
               name="position" #position = 'ngModel' autocomplete="off"
               [(ngModel)] = 'empService.selectedEmployee.position'>
             </div>
