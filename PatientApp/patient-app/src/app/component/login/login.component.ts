@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/shared/user.service';
+import { NgForm } from '@angular/forms';
+import { Login } from 'src/app/model/login.model';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-login',
@@ -7,9 +13,69 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
+
+    // Initially we have to call this function,
+    // Otherwise it will give you undefined error
+    this.resetForm()
+
+
   }
+
+  // initially we have to reset form field 
+  resetForm(form?: NgForm) {
+    if (form) {
+      form.reset();
+    }
+    // initialize empty value for ignoring undefined error
+    this.userService.loginUserDetails = {
+      email: '',
+      password: ''
+    }
+  }
+
+
+
+  onSubmit(form: NgForm) {
+
+    // check email is available or not.
+    if (form.value.email) {
+      this.userService.userLogin(form.value).subscribe(
+        result => {
+          
+          // simple log the role in console
+          console.log(result["userInfo"].role);
+
+          // store the token inside local storage
+          localStorage.setItem('token', result['token']);
+
+          // storing data into service property for sharing any component
+          this.userService.selectedUser = result;
+
+          // comparing roll as doctor or not
+          if(result['userInfo'].role == 'doctor'){
+            // send result data and store inside a service property
+
+            this.router.navigate(['/doctor'])
+          }
+          
+          // comparing roll as patient or not
+          if(result['userInfo'].role == 'patient'){
+            // send result data and store inside a service property
+
+            this.router.navigate(['/patient'])
+          }
+        },
+        errorResponse => {
+          console.log(errorResponse);
+        }
+      )
+    }
+  }
+
+
 
 }

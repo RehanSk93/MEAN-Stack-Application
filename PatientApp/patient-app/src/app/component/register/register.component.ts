@@ -12,6 +12,7 @@ import { from } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 
+
   constructor(private userService: UserService,
               private router: Router) { }
 
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
       this.userService.userRegister(form.value).subscribe(
         (result) => {
           console.log(result);
-          
+          if(result){  this.userService.userMessage = true; }
           // Reset the form
           this.resetForm();
 
@@ -51,6 +52,4 @@ export class RegisterComponent implements OnInit {
       )
     }
   }
-
-
 }

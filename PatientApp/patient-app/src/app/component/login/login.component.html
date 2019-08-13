@@ -1,27 +1,57 @@
 <div class="row justify-content-center mt-5 mb-5">
   <div class="col-md-7">
+    
+      <!-- Message for register feedback -->
+      <div class="alert alert-success alert-dismissible fade show" 
+      role="alert" *ngIf = 'userService.userMessage'>
+        <strong>Register Successful!</strong> Now you can login.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
     <div class="card">
       <div class="card-header">
         <h5></h5>
         <h5 class="card-title">User Login</h5>
       </div>
-      <form>
+      <form #userLogin='ngForm'>
         <div class="card-body">
 
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control">
+            <input type="email" 
+            class="form-control" 
+            name="email"
+            #email = 'ngModel'
+            required
+            email 
+            [(ngModel)] = 'userService.loginUserDetails.email'
+            [class.is-invalid] = 'email.invalid && email.touched'
+            autocomplete="off" >
+
+            <span class="invalid-feedback" 
+            *ngIf = 'email.invalid && email.touched'>
+            Email is required</span>
           </div>
 
           <div class="form-group">
-            <label for="email">Password</label>
-            <input type="email" class="form-control">
+            <label for="password">Password</label>
+            <input type="password" 
+            class="form-control"
+            name="password"
+            required
+            minlength="4"
+            [(ngModel)] = 'userService.loginUserDetails.password'
+            autocomplete="off" >
           </div>
-
-          
         </div>
+
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" 
+          class="btn btn-primary"
+          (click) = 'onSubmit(userLogin)'
+          [disabled] = '!userLogin.valid' >Login</button>
         </div>
       </form>
     </div>

@@ -4,21 +4,44 @@ import { HttpClient } from '@angular/common/http';
 
 import { User } from '../model/user.model';
 import { Observable } from 'rxjs';
+import { Login } from '../model/login.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  selectedUser: User;
+  // Message for status alert..
+  public userMessage: boolean = false;
+
+  // if login successful then fetch userDetails and store 
+  selectedUser;
+  
+  loginUserDetails: Login;
+
+
 
   readonly baseURL = 'http://localhost:3000/user';
+  readonly loginURL = 'http://localhost:3000/user/login';
 
   constructor(private http: HttpClient) { }
 
   // Post data to server
   userRegister(userDetails: User):Observable<User>{
     return this.http.post<User>(this.baseURL, userDetails);
+  }
+
+  // user login
+  userLogin(loginDetails: Login):Observable<Login>{
+    return this.http.post<Login>(this.loginURL, loginDetails);
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('token');
+  }
+
+  logOut(){
+    return localStorage.removeItem('token');
   }
 
 
