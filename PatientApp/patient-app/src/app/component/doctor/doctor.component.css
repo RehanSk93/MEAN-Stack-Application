@@ -1,0 +1,29 @@
+.left-section{
+    height: 85vh;
+    background-color: #4d4d4d;
+    padding: 0;
+}
+
+.list-group-item {
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+
+.form-control {
+    height: 50px;
+    border-radius: 0px;
+    border-color: transparent; 
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    padding-left: 10px;
+}
+
+.card img{
+    height: 220px;
+}

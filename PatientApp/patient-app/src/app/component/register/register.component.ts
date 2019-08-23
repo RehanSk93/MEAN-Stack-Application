@@ -12,7 +12,6 @@ import { from } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 
-
   constructor(private userService: UserService,
               private router: Router) { }
 
