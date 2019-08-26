@@ -10,6 +10,15 @@
         </button>
       </div>
 
+      <!-- Message for register feedback -->
+      <div class="alert alert-danger alert-dismissible fade show" 
+      role="alert" *ngIf = 'errResponse'>
+        <strong>Invalid Password</strong> Please try again.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
     <div class="card">
       <div class="card-header">
         <h5></h5>

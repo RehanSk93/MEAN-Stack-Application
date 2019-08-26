@@ -3,6 +3,7 @@ import { UserService } from 'src/app/shared/user.service';
 import { NgForm } from '@angular/forms';
 import { Login } from 'src/app/model/login.model';
 import { Router } from '@angular/router';
+import { User } from 'src/app/model/user.model';
 
 
 
@@ -12,6 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  errResponse = false;
 
   constructor(private userService: UserService,
               private router: Router) { }
@@ -47,30 +50,29 @@ export class LoginComponent implements OnInit {
         result => {
           
           // simple log the role in console
-          console.log(result["userInfo"].role);
+          // console.log(result["userInfo"].role);
 
           // store the token inside local storage
+
           localStorage.setItem('token', result['token']);
+          localStorage.setItem('username', result['userInfo']['name']);
 
           // storing data into service property for sharing any component
-          this.userService.selectedUser = result;
+          this.userService.selectedUser = result as User;
 
           // comparing roll as doctor or not
           if(result['userInfo'].role == 'doctor'){
-            // send result data and store inside a service property
-
             this.router.navigate(['/doctor'])
           }
           
           // comparing roll as patient or not
           if(result['userInfo'].role == 'patient'){
-            // send result data and store inside a service property
-
             this.router.navigate(['/patient'])
           }
         },
         errorResponse => {
-          console.log(errorResponse);
+          console.log('Login Error: '+ JSON.stringify(errorResponse));
+          this.errResponse = true;
         }
       )
     }

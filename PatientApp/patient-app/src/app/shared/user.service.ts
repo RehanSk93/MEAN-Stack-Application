@@ -15,7 +15,7 @@ export class UserService {
   public userMessage: boolean = false;
 
   // if login successful then fetch userDetails and store 
-  selectedUser;
+  selectedUser: User;
   
   loginUserDetails: Login;
 
