@@ -9,6 +9,7 @@ import { User } from 'src/app/model/user.model';
 })
 export class PatientComponent implements OnInit {
 
+  
   userDetails: User;
   userName : any;
 
@@ -20,7 +21,7 @@ export class PatientComponent implements OnInit {
 
 
   // this.userDetails = this.userService.selectedUser;
-  //  console.log( 'This is fetching data' + JSON.stringify(this.userDetails));
+  // console.log( 'This is fetching data' + JSON.stringify(this.userDetails));
 
   //  if(this.userDetails && this.userDetails['userInfo'] && this.userDetails['userInfo']['name']){
 
@@ -29,6 +30,11 @@ export class PatientComponent implements OnInit {
   //   console.log(this.userDetails['userInfo']['name'])
   //  }
 
+  // fetch user details
+  
+
   }
+
+  
 
 }

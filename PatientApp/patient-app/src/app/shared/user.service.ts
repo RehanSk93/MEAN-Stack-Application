@@ -22,6 +22,7 @@ export class UserService {
 
 
   readonly baseURL = 'http://localhost:3000/user';
+  readonly allUser = 'http://localhost:3000/user/alluser';
   readonly loginURL = 'http://localhost:3000/user/login';
 
   constructor(private http: HttpClient) { }
@@ -34,6 +35,12 @@ export class UserService {
   // user login
   userLogin(loginDetails: Login):Observable<Login>{
     return this.http.post<Login>(this.loginURL, loginDetails);
+  }
+
+
+  // fetch all user 
+  fetchUserDetails():Observable<User> {
+    return this.http.get<User>(this.allUser);
   }
 
   loggedIn(){

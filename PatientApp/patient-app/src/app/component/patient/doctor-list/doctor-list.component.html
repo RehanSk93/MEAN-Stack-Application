@@ -1,0 +1,14 @@
+<div class="row justify-content-center mt-4">
+    <div *ngFor='let user of allEmployes'>
+        <div class="card mb-4 ml-4 pt-3" style="width: 18rem;" *ngIf='user.role === "doctor"'>
+            <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914__340.png"
+                class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Dr. {{ user.name }}</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas,
+                    temporibus.</p>
+                <a href="#" class="btn btn-primary">Book Now</a>
+            </div>
+        </div>
+    </div>
+</div>

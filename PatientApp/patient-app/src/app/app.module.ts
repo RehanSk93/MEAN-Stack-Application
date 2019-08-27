@@ -13,6 +13,14 @@ import { AdminComponent } from './component/admin/admin.component';
 import { DoctorComponent } from './component/doctor/doctor.component';
 import { PatientComponent } from './component/patient/patient.component';
 import { UserService } from './shared/user.service';
+import { DoctorListComponent } from './component/patient/doctor-list/doctor-list.component';
+import { PatientDashboardComponent } from './component/patient/patient-dashboard/patient-dashboard.component';
+import { PatientHistoryComponent } from './component/patient/patient-history/patient-history.component';
+import { DoctorDashboardComponent } from './component/doctor/doctor-dashboard/doctor-dashboard.component';
+import { PatientRequestComponent } from './component/doctor/patient-request/patient-request.component';
+import { DoctorDetailComponent } from './component/doctor/doctor-detail/doctor-detail.component';
+import { UserProfileComponent } from './component/patient/user-profile/user-profile.component';
+import { DoctorProfileComponent } from './component/doctor/doctor-profile/doctor-profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +30,15 @@ import { UserService } from './shared/user.service';
     RegisterComponent,
     AdminComponent,
     DoctorComponent,
-    PatientComponent
+    PatientComponent,
+    DoctorListComponent,
+    PatientDashboardComponent,
+    PatientHistoryComponent,
+    DoctorDashboardComponent,
+    PatientRequestComponent,
+    DoctorDetailComponent,
+    UserProfileComponent,
+    DoctorProfileComponent
   ],
   imports: [
     BrowserModule,

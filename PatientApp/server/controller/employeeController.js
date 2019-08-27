@@ -11,9 +11,9 @@ const User = require('../models/employees');
 
 
 // Step -14     | Create a route for fetching all employee details
-router.get('/', (req, res) => {
+router.get('/alluser', (req, res) => {
     // use find method for getting all employee details
-    Employee.find((err, docs) => {
+    User.find((err, docs) => {
         if(!err){ res.send(docs) }
         else{
             console.log('Error in retrieving employee'+ JSON.stringify(err, undefined, 2))
