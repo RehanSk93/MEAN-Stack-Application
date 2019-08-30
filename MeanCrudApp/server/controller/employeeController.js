@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 
 
 
-// Step - 18    | Passing _id for fetching a specific employee details
+// Step - 19    | Passing _id for fetching a specific employee details
 router.get('/:id', (req, res) => {
     // Check the id value is valid and available or not inside DB
     // We have to import Step - 19

@@ -27,7 +27,7 @@ app.use('/employee', employeeController)
 
 // Step - 6
 app.listen(POST, () => {
-    console.log('Server started at port no '+ POST);
+    console.log('Server started at port no ', POST);
 });
 
 

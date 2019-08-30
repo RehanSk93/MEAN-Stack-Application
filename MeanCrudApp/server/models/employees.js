@@ -7,7 +7,7 @@ const employeeSchema = new Schema({
     name: { type: String },
     position: { type: String },
     office: { type: String },
-    salary: { type: String }
+    salary: { type: Number }
 });
 
 // Step - 10    | Export employeeSchema Object
