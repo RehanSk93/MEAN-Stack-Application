@@ -12,11 +12,10 @@ import { Login } from '../model/login.model';
 export class UserService {
 
   // Message for status alert..
-  public userMessage: boolean = false;
+  public userMessage = false;
 
-  // if login successful then fetch userDetails and store 
+  // if login successful then fetch userDetails and store
   selectedUser: User;
-  
   loginUserDetails: Login;
 
 
@@ -28,26 +27,26 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   // Post data to server
-  userRegister(userDetails: User):Observable<User>{
+  userRegister(userDetails: User): Observable<User> {
     return this.http.post<User>(this.baseURL, userDetails);
   }
 
   // user login
-  userLogin(loginDetails: Login):Observable<Login>{
+  userLogin(loginDetails: Login): Observable<Login> {
     return this.http.post<Login>(this.loginURL, loginDetails);
   }
 
 
-  // fetch all user 
-  fetchUserDetails():Observable<User> {
+  // fetch all user
+  fetchUserDetails(): Observable<User> {
     return this.http.get<User>(this.allUser);
   }
 
-  loggedIn(){
+  loggedIn() {
     return !!localStorage.getItem('token');
   }
 
-  logOut(){
+  logOut() {
     return localStorage.removeItem('token');
   }
 

@@ -16,7 +16,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
      this.userDetails = this.userService.selectedUser;
     // console.log( 'User details '+ JSON.stringify(this.userDetails));
-    console.log(this.userDetails['userInfo']);
+     console.log(this.userDetails['userInfo']);
   }
 
 }
