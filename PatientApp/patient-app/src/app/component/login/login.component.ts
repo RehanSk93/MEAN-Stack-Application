@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
 
     // Initially we have to call this function,
     // Otherwise it will give you undefined error
-    this.resetForm()
+    this.resetForm();
 
 
   }
 
-  // initially we have to reset form field 
+  // initially we have to reset form field
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginUserDetails = {
       email: '',
       password: ''
-    }
+    };
   }
 
 
@@ -48,33 +48,35 @@ export class LoginComponent implements OnInit {
     if (form.value.email) {
       this.userService.userLogin(form.value).subscribe(
         result => {
-          
+
           // simple log the role in console
           // console.log(result["userInfo"].role);
 
           // store the token inside local storage
-
-          localStorage.setItem('token', result['token']);
-          localStorage.setItem('username', result['userInfo']['name']);
+           const patientInfo = JSON.stringify(result);
+           localStorage.setItem('token', result['token']);
+           localStorage.setItem('username', result['userInfo']['name']);
+           localStorage.setItem('userID', result['userInfo']['_id']);
+           localStorage.setItem('userDetails', patientInfo);
 
           // storing data into service property for sharing any component
-          this.userService.selectedUser = result as User;
+           this.userService.selectedUser = result as User;
 
           // comparing roll as doctor or not
-          if(result['userInfo'].role == 'doctor'){
-            this.router.navigate(['/doctor'])
+           if (result['userInfo'].role === 'doctor') {
+            this.router.navigate(['/doctor']);
           }
-          
+
           // comparing roll as patient or not
-          if(result['userInfo'].role == 'patient'){
-            this.router.navigate(['/patient'])
+           if (result['userInfo'].role === 'patient') {
+            this.router.navigate(['/patient']);
           }
         },
         errorResponse => {
-          console.log('Login Error: '+ JSON.stringify(errorResponse));
+          console.log('Login Error: ' + JSON.stringify(errorResponse));
           this.errResponse = true;
         }
-      )
+      );
     }
   }
 

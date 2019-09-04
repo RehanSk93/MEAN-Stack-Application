@@ -8,6 +8,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 // Step - 13    | Import model to work with MongoDB database
 const User = require('../models/employees');
+const patientBooking = require('../models/requestDoctor')
 
 
 // Step -14     | Create a route for fetching all employee details
@@ -43,6 +44,22 @@ router.post('/', (req, res) => {
 
 
 
+// Step - 18    | patient booking request details
+router.post('/booking', (req, res) => {
+    let user = new patientBooking({
+        doctorID: req.body.doctorRequestID,
+        patientID: req.body.patientRequestID,
+    });
+    user.save((err, docs) => {
+        if(!err){
+            res.send(docs);
+        }else{
+            console.log('Error in User save ' + JSON.stringify(err, undefined, 2))
+        }
+    })  
+})
+
+
 
 // User login api
 router.post('/login', (req, res)=>{
@@ -73,27 +90,24 @@ router.post('/login', (req, res)=>{
 
 
 
+ // Step - 18    | Passing _id for fetching a specific employee details
+ router.get('/:id', (req, res) => {
+     // Check the id value is valid and available or not inside DB
+     // We have to import Step - 19
+     if(!ObjectId.isValid(req.params.id)){
+         return res.status(200).send(`No record with this given id : ${req.params.id}`);
+     }
+     // If id is available then we have to find employee by ID
+     User.findById(req.params.id, (err, docs) => {
+         if(!err){ res.send(docs) }
+         else{
+             console.log('Error in Retrieving Employee ' + JSON.stringify(err, undefined, 2))
+         }
+     })
+ })
 
 
-
-
-// // Step - 18    | Passing _id for fetching a specific employee details
-// router.get('/:id', (req, res) => {
-//     // Check the id value is valid and available or not inside DB
-//     // We have to import Step - 19
-//     if(!ObjectId.isValid(req.params.id)){
-//         return res.status(200).send(`No record with this given id : ${req.params.id}`);
-//     }
-
-//     // If id is available then we have to find employee by ID
-//     Employee.findById(req.params.id, (err, docs) => {
-//         if(!err){ res.send(docs) }
-//         else{
-//             console.log('Error in Retrieving Employee ' + JSON.stringify(err, undefined, 2))
-//         }
-//     })
-// })
-
+ 
 
 // // Step - 20    | Create Update routes for updating existing employee details
 // router.put('/:id', (req, res) => {

@@ -23,6 +23,7 @@ export class UserService {
   readonly baseURL = 'http://localhost:3000/user';
   readonly allUser = 'http://localhost:3000/user/alluser';
   readonly loginURL = 'http://localhost:3000/user/login';
+  readonly bookingRequest = 'http://localhost:3000/user/booking';
 
   constructor(private http: HttpClient) { }
 
@@ -42,12 +43,30 @@ export class UserService {
     return this.http.get<User>(this.allUser);
   }
 
+
+  // Fetch single employee data from database
+  getUser(empID): Observable<User> {
+    return this.http.get<User>(this.baseURL + `/${empID}`);
+  }
+
+
+
   loggedIn() {
     return !!localStorage.getItem('token');
   }
 
   logOut() {
-    return localStorage.removeItem('token');
+    // Clear all data at a time
+    // but if you want to remove single item then use removeItem() method
+    return localStorage.clear();
+  }
+
+  doctorBookingRequest(doctorId: string) {
+    const bookingDetails = {
+      doctorRequestID: doctorId,
+      patientRequestID: localStorage.getItem('userID')
+    };
+    return this.http.post(this.bookingRequest, bookingDetails);
   }
 
 

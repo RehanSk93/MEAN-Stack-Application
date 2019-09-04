@@ -9,14 +9,21 @@ import { User } from 'src/app/model/user.model';
 })
 export class UserProfileComponent implements OnInit {
 
-  userDetails: User;
+  userID: any;
+  userDetails: any;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+    this.userID = localStorage.getItem('userID');
+  }
 
   ngOnInit() {
-     this.userDetails = this.userService.selectedUser;
-    // console.log( 'User details '+ JSON.stringify(this.userDetails));
-     console.log(this.userDetails['userInfo']);
+    this.fetchDetails();
+  }
+
+  fetchDetails() {
+    this.userService.getUser(this.userID).subscribe((resData) => {
+      this.userDetails = resData;
+    });
   }
 
 }

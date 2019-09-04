@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/model/user.model';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -9,22 +8,30 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class DoctorListComponent implements OnInit {
 
-  allEmployes = [];
-  
+  allEmployees: any = [];
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.fetchDetails();
   }
 
-  fetchDetails(){
-    this.userService.fetchUserDetails().subscribe(result => {
-      console.log(result);
-      this.allEmployes = result as unknown as User[]
+  private fetchDetails() {
+    this.userService.fetchUserDetails()
+    .subscribe(result => {
 
+      this.allEmployees = result;
+      console.log(this.allEmployees);
     }, err => {
       console.log(err);
-    })
+    });
+  }
+
+  onBooking(doctorID: string) {
+    console.log(doctorID);
+    this.userService.doctorBookingRequest(doctorID).subscribe(resData => {
+      console.log(resData);
+    });
   }
 
 }
