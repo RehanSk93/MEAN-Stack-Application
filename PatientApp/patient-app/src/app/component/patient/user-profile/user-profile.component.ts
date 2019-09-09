@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/user.service';
 import { User } from 'src/app/model/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,8 +12,10 @@ export class UserProfileComponent implements OnInit {
 
   userID: any;
   userDetails: any;
+  editForm = false;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private route: Router) {
     this.userID = localStorage.getItem('userID');
   }
 
@@ -26,4 +29,7 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  onEditForm() {
+    this.editForm = !this.editForm;
+  }
 }

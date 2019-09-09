@@ -49,6 +49,12 @@ export class UserService {
     return this.http.get<User>(this.baseURL + `/${empID}`);
   }
 
+  // Update patient details
+  updatePatientDetails(userDetails: User) {
+    const userId = localStorage.getItem('userID');
+    return this.http.put(this.baseURL + `/${userId}`, userDetails);
+  }
+
 
 
   loggedIn() {

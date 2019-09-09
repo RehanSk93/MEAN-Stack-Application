@@ -21,6 +21,7 @@ import { PatientRequestComponent } from './component/doctor/patient-request/pati
 import { DoctorDetailComponent } from './component/doctor/doctor-detail/doctor-detail.component';
 import { UserProfileComponent } from './component/patient/user-profile/user-profile.component';
 import { DoctorProfileComponent } from './component/doctor/doctor-profile/doctor-profile.component';
+import { EditProfileComponent } from './component/patient/user-profile/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DoctorProfileComponent } from './component/doctor/doctor-profile/doctor
     PatientRequestComponent,
     DoctorDetailComponent,
     UserProfileComponent,
-    DoctorProfileComponent
+    DoctorProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -110,28 +110,27 @@ router.post('/login', (req, res)=>{
  
 
 // // Step - 20    | Create Update routes for updating existing employee details
-// router.put('/:id', (req, res) => {
-//     // First check id pass through URI is valid and available or not
-//     if(!ObjectId.isValid(req.params.id)){
-//         return res.status(200).send(`No record with this given id : ${req.params.id}`);
-//     }
-
-//     // We have to create an simple Object for retrieving data from URL 
-//     let emp = {
-//         name: req.body.name,
-//         position: req.body.position,
-//         office: req.body.office,
-//         salary: req.body.salary
-//     }
-
-//     // If id is available then we have to update employee by ID
-//     Employee.findByIdAndUpdate(req.params.id, { $set: emp }, { new: true }, (err, docs) => {
-//         if(!err){ res.send(docs) }
-//         else{
-//             console.log('Error in Employee Update : '+ JSON.stringify(err, undefined, 2))
-//         }
-//     })
-// })
+ router.put('/:id', (req, res) => {
+     // First check id pass through URI is valid and available or not
+     console.log('Result', req.params.id);
+     if(!ObjectId.isValid(req.params.id)){
+         return res.status(200).send(`No record with this given id : ${req.params.id}`);
+     }
+     // We have to create an simple Object for retrieving data from URL 
+     let userUpdate = {
+         name: req.body.name,
+         email: req.body.email,
+         phone: req.body.phone,
+         age: req.body.age
+     }
+     // If id is available then we have to update employee by ID
+     User.findByIdAndUpdate(req.params.id, { $set: userUpdate }, { new: true }, (err, docs) => {
+         if(!err){ res.send(docs) }
+         else{
+             console.log('Error in Employee Update : '+ JSON.stringify(err, undefined, 2))
+         }
+     })
+ })
 
 
 
