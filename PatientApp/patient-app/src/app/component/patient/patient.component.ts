@@ -9,11 +9,8 @@ import { User } from 'src/app/model/user.model';
 })
 export class PatientComponent implements OnInit {
 
-  userName: any;
-  userId: any;
 
-  constructor(private userService: UserService) {
-    this.userName = localStorage.getItem('username');
+  constructor() {
   }
 
   ngOnInit() {

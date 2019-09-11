@@ -1,8 +1,8 @@
 <div class="row justify-content-center mt-5 mb-5 customPosition">
   <div class="col-md-7">
-    
+
       <!-- Message for register feedback -->
-      <div class="alert alert-success alert-dismissible fade show" 
+      <div class="alert alert-success alert-dismissible fade show"
       role="alert" *ngIf = 'userService.userMessage'>
         <strong>Register Successful!</strong> Now you can login.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -11,7 +11,7 @@
       </div>
 
       <!-- Message for register feedback -->
-      <div class="alert alert-danger alert-dismissible fade show" 
+      <div class="alert alert-danger alert-dismissible fade show"
       role="alert" *ngIf = 'errResponse'>
         <strong>Invalid Password</strong> Please try again.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -29,24 +29,24 @@
 
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" 
-            class="form-control" 
+            <input type="email"
+            class="form-control"
             name="email"
             #email = 'ngModel'
             required
-            email 
+            email
             [(ngModel)] = 'userService.loginUserDetails.email'
             [class.is-invalid] = 'email.invalid && email.touched'
             autocomplete="off" >
 
-            <span class="invalid-feedback" 
+            <span class="invalid-feedback"
             *ngIf = 'email.invalid && email.touched'>
             Email is required</span>
           </div>
 
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" 
+            <input type="password"
             class="form-control"
             name="password"
             required
@@ -57,7 +57,7 @@
         </div>
 
         <div class="card-footer">
-          <button type="submit" 
+          <button type="submit"
           class="btn btn-primary"
           (click) = 'onSubmit(userLogin)'
           [disabled] = '!userLogin.valid' >Login</button>
