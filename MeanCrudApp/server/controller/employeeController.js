@@ -10,7 +10,7 @@ const Employee = require('../models/employees');
 
 
 // Step -14     | Create a route for fetching all employee details
-router.get('/', (req, res) => {
+router.get('/', (req, res) => { 
     // use find method for getting all employee details
     Employee.find((err, docs) => {
         if(!err){ res.send(docs) }
