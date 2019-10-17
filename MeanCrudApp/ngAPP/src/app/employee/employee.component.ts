@@ -12,7 +12,7 @@ import { Employee } from '../model/employee.model';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private empService: EmployeeService) { }
+  constructor(public empService: EmployeeService) { }
 
   ngOnInit() {
     this.resetForm();
@@ -21,7 +21,7 @@ export class EmployeeComponent implements OnInit {
     this.refreshEmployeeList();
   }
 
-  // initially we have to reset form field 
+  // initially we have to reset form field
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
@@ -37,18 +37,18 @@ export class EmployeeComponent implements OnInit {
   }
 
 
-  
+
   // Always Refresh the page after update and insert operation has done
   refreshEmployeeList() {
     this.empService.getEmployeeList().subscribe((result) => {
-      // assigning object into an array => as Employee[]  
+      // assigning object into an array => as Employee[]
       this.empService.employees = result as Employee[]
     })
   }
 
 
 
-  // Create a function for submitting the form data 
+  // Create a function for submitting the form data
   onSubmit(form: NgForm) {
     // if _id value is empty then new employee is created
     if (form.value._id == null) {
@@ -73,7 +73,7 @@ export class EmployeeComponent implements OnInit {
 
 
 
-  // Edit employee 
+  // Edit employee
   onEdit(emp: Employee) {
     this.empService.selectedEmployee = emp;
   }

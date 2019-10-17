@@ -2,7 +2,7 @@
     <!-- --------------------- Left Side -------------------------- -->
     <div class="col-md-5">
         <form #employeeForm = 'ngForm'>
-            <input type="hidden" name="_id" #_id = 'ngModel' 
+            <input type="hidden" name="_id" #_id = 'ngModel'
             [(ngModel)] = 'empService.selectedEmployee._id'>
 
             <div class="form-group">
@@ -18,25 +18,25 @@
               name="position" #position = 'ngModel' autocomplete="off"
               [(ngModel)] = 'empService.selectedEmployee.position'>
             </div>
-            
+
             <div class="form-group">
               <label for="office">Office</label>
-              <input type="text" class="form-control" 
+              <input type="text" class="form-control"
               name="office" #office = 'ngModel' autocomplete="off"
               [(ngModel)] = 'empService.selectedEmployee.office'>
             </div>
-            
+
             <div class="form-group mb-4">
               <label for="salary">Salary</label>
-              <input type="number" class="form-control" 
+              <input type="number" class="form-control"
               name="salary" #salary = 'ngModel' autocomplete="off"
               [(ngModel)] = 'empService.selectedEmployee.salary'>
             </div>
-            
-            <button type="submit" class="btn btn-primary" 
+
+            <button type="submit" class="btn btn-primary"
             (click) = 'onSubmit(employeeForm)'>Submit</button>
 
-            <button type="button" class="btn btn-success ml-4" 
+            <button type="button" class="btn btn-success ml-4"
             (click) = 'resetForm(employeeForm)'>Reset</button>
           </form>
     </div>
@@ -68,7 +68,7 @@
                       (click) = 'onEdit(emp)'>Edit</button>
                     </td>
                     <td>
-                      <button class="btn btn-sm btn-danger" 
+                      <button class="btn btn-sm btn-danger"
                       (click) = 'onDelete(emp._id, employeeForm)'>Delete</button>
                     </td>
                 </tr>
