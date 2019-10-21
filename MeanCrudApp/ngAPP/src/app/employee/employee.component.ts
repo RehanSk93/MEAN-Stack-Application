@@ -33,7 +33,7 @@ export class EmployeeComponent implements OnInit {
       salary: null,
       office: '',
       position: ''
-    }
+    };
   }
 
 
@@ -42,8 +42,8 @@ export class EmployeeComponent implements OnInit {
   refreshEmployeeList() {
     this.empService.getEmployeeList().subscribe((result) => {
       // assigning object into an array => as Employee[]
-      this.empService.employees = result as Employee[]
-    })
+      this.empService.employees = result as Employee[];
+    });
   }
 
 
@@ -59,15 +59,14 @@ export class EmployeeComponent implements OnInit {
         this.resetForm(form);
         this.refreshEmployeeList();
       }
-      )
-    }
-    else{
+      );
+    } else {
        // if _id value is not empty then we will update the value
        this.empService.putEmployee(form.value).subscribe((result) => {
          this.resetForm(form);
          this.refreshEmployeeList();
          //alert('data Updated successful');
-       })
+       });
      }
   }
 
