@@ -55,7 +55,7 @@ export class EmployeeComponent implements OnInit {
       this.empService.postEmployee(form.value).subscribe((res) => {
         // after inserting value we have to call reset function
         // we can show here insert successfully message
-        //alert('data Inserted successful');
+        // alert('data Inserted successful');
         this.resetForm(form);
         this.refreshEmployeeList();
       }
@@ -65,7 +65,7 @@ export class EmployeeComponent implements OnInit {
        this.empService.putEmployee(form.value).subscribe((result) => {
          this.resetForm(form);
          this.refreshEmployeeList();
-         //alert('data Updated successful');
+         // alert('data Updated successful');
        });
      }
   }
@@ -79,12 +79,14 @@ export class EmployeeComponent implements OnInit {
 
 
   // Delete operation empId for delete and form for reset after deleting
-  onDelete(_id: any, form: NgForm){
-    if(confirm('are you sure') == true){
+  // tslint:disable-next-line: variable-name
+  onDelete(_id: any, form: NgForm) {
+    // tslint:disable-next-line: triple-equals
+    if (confirm('are you sure') == true) {
       this.empService.deleteEmployee(_id).subscribe(
         (result) => { this.refreshEmployeeList(); },
         (error) => { console.log(error); }
-      )
+      );
     }
   }
 }

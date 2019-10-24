@@ -24,7 +24,7 @@ export class EmployeeService {
 
   // post data to server through http post request
   postEmployee(emp: Employee):Observable<Employee> {
-    return this.http.post<Employee>(this.baseURL, emp)
+    return this.http.post<Employee>(this.baseURL, emp);
   }
 
   // Fetch all data from server
