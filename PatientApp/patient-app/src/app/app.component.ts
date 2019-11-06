@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
 
   userName = '';
 
-  constructor(private userService: UserService,
+  constructor(public userService: UserService,
               private router: Router) {
   }
 
