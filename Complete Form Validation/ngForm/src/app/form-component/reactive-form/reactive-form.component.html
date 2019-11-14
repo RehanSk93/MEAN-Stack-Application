@@ -1,0 +1,139 @@
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card bg-primary mb-3">
+      <div class="card-header">Reactive Form Example</div>
+      <div class="card-body">
+        <form>
+          <div class="row mt-2">
+
+            <!-- 1st Column Start ------------------------------------------------------------------ -->
+            <div class="col-md-6">
+
+              <!-- Name Field -->
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" autocomplete="off" placeholder="Enter name"
+                  name="name" ngModel>
+              </div>
+
+
+              <!-- Email Field -->
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" autocomplete="off" placeholder="Enter email"
+                  name="email" ngModel>
+                <small id="emailHelp" class="form-text text-secondary">
+                  We'll never share your email with anyone else.
+                </small>
+              </div>
+
+
+              <!-- Gander Field -->
+              <fieldset class="form-group">
+                <label class="mr-4">Gander</label>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="gander" ngModel value="male">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="gander" ngModel value="female">
+                    Female
+                  </label>
+                </div>
+              </fieldset>
+
+
+              <!-- Position - Single select list -->
+              <div class="form-group">
+                <label for="position">Position</label>
+                <select class="form-control" id="position">
+                  <option>Angular Developer</option>
+                  <option>Java Developer</option>
+                  <option>React Developer</option>
+                  <option>.NET Developer</option>
+                  <option>PHP Developer</option>
+                </select>
+              </div>
+
+
+              <!-- Technology You know - Multiple select list -->
+              <div class="form-group">
+                <label for="technology">Technology you know</label>
+                <select multiple="" class="form-control" id="technology">
+                  <option>HTML</option>
+                  <option>CSS</option>
+                  <option>JavaScript</option>
+                  <option>AJAX</option>
+                  <option>Bootstrap</option>
+                  <option>Node-JS</option>
+                  <option>Mongo-DB</option>
+                  <option>Express-JS</option>
+                </select>
+              </div>
+
+            </div>
+
+
+            <!-- 2nd Column Start ------------------------------------------------------------------ -->
+            <div class="col-md-6">
+
+              <!-- Message - Textarea -->
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" rows="3"></textarea>
+              </div>
+
+
+              <!-- Upload your File -->
+              <div class="form-group">
+                <label for="fileUpload">File input</label>
+                <input type="file" class="form-control-file" id="fileUpload">
+                <small id="fileHelp" class="form-text text-secondary">This is some placeholder block-level help text for the
+                  above
+                  input. It's a bit lighter and easily wraps to a new line.</small>
+              </div>
+
+
+
+              <!-- Choose your framework - Checkbox -->
+              <fieldset class="form-group">
+                <label for="framework">Familiar Framework</label>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                    Angular-JS
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                    Angular
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                    React-JS
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                    Cake-PHP
+                  </label>
+                </div>
+              </fieldset>
+
+
+              <!-- Submit your form -->
+              <button type="submit" class="btn btn-secondary btn-block">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
