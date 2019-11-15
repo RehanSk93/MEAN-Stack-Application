@@ -11,6 +11,7 @@ import { FormArrayComponent } from './form-component/form-array/form-array.compo
 import { FooterComponent } from './footer/footer.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TestComponent } from './form-component/test/test.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TemplateDrivenFormComponent,
     ReactiveFormComponent,
     FormArrayComponent,
-    FooterComponent
+    FooterComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,6 @@
             <!-- 1st Column Start ------------------------------------------------------------------ -->
             <div class="col-md-6">
 
-
               <!-- Name Field with validation-->
               <div class="form-group">
                 <label for="name">Name</label>
@@ -184,6 +183,57 @@
                 placement="top">
               </div>
 
+
+              <!-- Password validation-->
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password"
+                class="form-control"
+                required
+                minlength="3"
+                id="password"
+                autocomplete="off"
+                placeholder="Enter password"
+                name="password"
+                ngModel
+                #passwordValidation="ngModel"
+                [class.is-invalid]="nameValidation.invalid && nameValidation.touched"
+                [class.is-valid]="nameValidation.valid">
+                <!-- Error message -->
+                <small id="name" class="form-text invalid-feedback"
+                  *ngIf="nameValidation.errors?.required"> User name is required
+                </small>
+                <small id="name" class="form-text invalid-feedback"
+                  *ngIf="nameValidation.errors?.minlength"> Minimum length should be 3 character!
+                </small>
+              </div>
+
+
+
+              <!-- Confirm Password validation-->
+              <div class="form-group">
+                <label for="confirmPassword">Confirm password</label>
+                <input type="password"
+                class="form-control"
+                required
+                minlength="3"
+                id="confirmPassword"
+                autocomplete="off"
+                placeholder="Enter Confirm Password"
+                name="confirmPassword"
+                ngModel
+                #confirmPasswordValidation="ngModel"
+                [class.is-invalid]="nameValidation.invalid && nameValidation.touched"
+                [class.is-valid]="nameValidation.valid">
+                <!-- Error message -->
+                <small id="name" class="form-text invalid-feedback"
+                  *ngIf="nameValidation.errors?.required"> User name is required
+                </small>
+                <small id="name" class="form-text invalid-feedback"
+                  *ngIf="nameValidation.errors?.minlength"> Minimum length should be 3 character!
+                </small>
+              </div>
+
             </div>
 
 
@@ -192,32 +242,12 @@
             <div class="col-md-6">
 
 
-              <!-- Date Picker Field -->
-              <!-- We are using ngx-bootstrap  -->
-              <div class="form-group">
-                <label for="provisionPeriod">Provision Period's</label>
-                <input type="text" class="form-control" id="provisionPeriod"
-                placeholder="Start - End" name="provisionPeriod" ngModel autocomplete="off"
-                bsDaterangepicker [bsConfig]="datePickerConfig" placement="down">
-              </div>
-
-
               <!-- Message - Textarea -->
               <div class="form-group">
                 <label for="message">Message</label>
                 <textarea class="form-control" id="message" rows="3" ngModel name="message"></textarea>
               </div>
 
-
-              <!-- User is active or not  -->
-              <fieldset class="form-group">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox"
-                    [(ngModel)]="isActive" name="isActive">Is Active
-                  </label>
-                </div>
-              </fieldset>
 
 
               <!-- Technology You know - Multiple select list -->
@@ -236,6 +266,29 @@
                   <label class="form-check-label" for="frameworkList{{ i }}">
                     <input class="form-check-input" id="frameworkList{{ i }}" type="checkbox"
                       (change)="onChange(x.framework, $event.target.checked)">{{ x.framework }}
+                  </label>
+                </div>
+              </fieldset>
+
+
+
+              <!-- Date Picker Field -->
+              <!-- We are using ngx-bootstrap  -->
+              <div class="form-group">
+                <label for="provisionPeriod">Provision Period's</label>
+                <input type="text" class="form-control" id="provisionPeriod"
+                placeholder="Start - End" name="provisionPeriod" ngModel autocomplete="off"
+                bsDaterangepicker [bsConfig]="datePickerConfig" placement="down">
+              </div>
+
+
+
+              <!-- User is active or not  -->
+              <fieldset class="form-group">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox"
+                    [(ngModel)]="isActive" name="isActive">I agree all term and condition
                   </label>
                 </div>
               </fieldset>
