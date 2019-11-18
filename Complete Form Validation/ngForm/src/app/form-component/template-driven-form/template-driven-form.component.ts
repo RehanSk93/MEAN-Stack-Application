@@ -31,6 +31,7 @@ export class TemplateDrivenFormComponent implements OnInit {
   // By default select position
 
 
+
   // Checked box checked by default using property binding
   isActive = true;
 

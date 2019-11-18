@@ -12,6 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestComponent } from './form-component/test/test.component';
+import { CustomSelectorsDirective } from './form-component/template-driven-form/custom-selectors.directive';
+import { PasswordMatchValidatorDirective } from './form-component/template-driven-form/password-match-validator.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TestComponent } from './form-component/test/test.component';
     ReactiveFormComponent,
     FormArrayComponent,
     FooterComponent,
-    TestComponent
+    TestComponent,
+    CustomSelectorsDirective,
+    PasswordMatchValidatorDirective
   ],
   imports: [
     BrowserModule,

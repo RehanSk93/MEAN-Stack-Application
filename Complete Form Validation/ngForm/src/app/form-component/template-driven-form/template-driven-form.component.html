@@ -155,14 +155,31 @@
 
 
               <!-- Position - Single select list -->
+              <!-- getting some error -->
+              <!--
               <div class="form-group">
                 <label for="position">Position</label>
-                <select class="form-control" ngModel name="position" id="position">
-                  <option [value]="position.name" *ngFor="let position of positions">
-                    {{ position.name }}
-                  </option>
+                <select class="form-control"
+                        id="position"
+                        name="position"
+                        [(ngModel)] = 'userPosition'
+                        appCustomSelectors='null'
+                        #positionValidation='ngModel'
+                        [class.is-invalid]="positionValidation.invalid && positionValidation.touched"
+                        [class.is-valid]="positionValidation.valid &&
+                        positionValidation.touched">
+                          <option value="null">Select Position</option>
+                          <option [value]="position.name" *ngFor="let position of positions">
+                            {{ position.name }}
+                          </option>
                 </select>
+
+                <small id="gender" class="form-text text-danger"
+                  *ngIf="positionValidation.touched && positionValidation.errors?.defaultSelected"> Position is required
+                </small>
               </div>
+              -->
+
 
 
               <!-- Upload your File -->
@@ -177,10 +194,24 @@
               <!-- We are using ngx-bootstrap  -->
               <div class="form-group">
                 <label for="dob">Choose Date of birth</label>
-                <input type="text"  class="form-control" id="dob"
-                placeholder="Date of Birth" name="dob" ngModel autocomplete="off"
-                bsDatepicker [bsConfig]="datePickerConfig"
-                placement="top">
+                <input
+                type="text"
+                id="dob"
+                placeholder="Date of Birth"
+                autocomplete="off"
+                [bsConfig]="datePickerConfig"
+                bsDatepicker
+                placement="top"
+                required
+                class="form-control"
+                name="dob"
+                #dobValidation='ngModel'
+                ngModel>
+
+                <!-- Error message -->
+                <small id="gender" class="form-text text-danger"
+                  *ngIf="dobValidation.errors?.required && dobValidation.touched"> Date of birth is required
+                </small>
               </div>
 
 
