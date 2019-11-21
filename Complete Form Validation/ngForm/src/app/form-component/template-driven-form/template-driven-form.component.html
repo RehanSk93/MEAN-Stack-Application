@@ -21,17 +21,18 @@
                 minlength="3"
                 id="name"
                 autocomplete="off"
-                placeholder="Enter name" name="name"
+                placeholder="Enter name"
+                name="name"
                 ngModel
                 #nameValidation="ngModel"
                 [class.is-invalid]="nameValidation.invalid && nameValidation.touched"
                 [class.is-valid]="nameValidation.valid">
                 <!-- Error message -->
                 <small id="name" class="form-text invalid-feedback"
-                  *ngIf="nameValidation.errors?.required"> User name is required
+                  *ngIf="nameValidation?.errors?.required"> User name is required
                 </small>
                 <small id="name" class="form-text invalid-feedback"
-                  *ngIf="nameValidation.errors?.minlength"> Minimum length should be 3 character!
+                  *ngIf="nameValidation?.errors?.minlength"> Minimum length should be 3 character!
                 </small>
               </div>
 
@@ -58,10 +59,10 @@
                 </small>
                 <!-- Error message -->
                 <small class="form-text invalid-feedback"
-                *ngIf="emailValidate.errors?.required"> Email is required
+                *ngIf="emailValidate?.errors?.required"> Email is required
                 </small>
                 <small class="form-text invalid-feedback"
-                *ngIf="emailValidate.errors?.email"> This is not a valid Email!!!
+                *ngIf="emailValidate?.errors?.email"> This is not a valid Email!!!
                 </small>
               </div>
 
@@ -84,10 +85,10 @@
                 [class.is-valid]="phoneValidation.valid && phoneValidation.touched" >
                 <!-- Error message -->
                 <small id="phone" class="form-text invalid-feedback"
-                  *ngIf="phoneValidation.errors?.required">Phone number is required
+                  *ngIf="phoneValidation?.errors?.required">Phone number is required
                 </small>
                 <small id="phoneValidation" class="form-text invalid-feedback"
-                  *ngIf="phoneValidation.errors?.pattern">Invalid mobile number
+                  *ngIf="phoneValidation?.errors?.pattern">Invalid mobile number
                 </small>
               </div>
 
@@ -148,7 +149,7 @@
                 </div>
                 <!-- Error message -->
                 <small id="gender" class="form-text text-error"
-                  *ngIf="genderInfo.errors?.required && genderInfo.touched"> Gender is required
+                  *ngIf="genderInfo?.errors?.required && genderInfo.touched"> Gender is required
                 </small>
               </fieldset>
 
@@ -210,7 +211,7 @@
 
                 <!-- Error message -->
                 <small id="gender" class="form-text text-danger"
-                  *ngIf="dobValidation.errors?.required && dobValidation.touched"> Date of birth is required
+                  *ngIf="dobValidation?.errors?.required && dobValidation.touched"> Date of birth is required
                 </small>
               </div>
 
@@ -232,10 +233,10 @@
                 [class.is-valid]="nameValidation.valid">
                 <!-- Error message -->
                 <small id="name" class="form-text invalid-feedback"
-                  *ngIf="nameValidation.errors?.required"> User name is required
+                  *ngIf="nameValidation?.errors?.required"> User name is required
                 </small>
                 <small id="name" class="form-text invalid-feedback"
-                  *ngIf="nameValidation.errors?.minlength"> Minimum length should be 3 character!
+                  *ngIf="nameValidation?.errors?.minlength"> Minimum length should be 3 character!
                 </small>
               </div>
 
@@ -258,10 +259,10 @@
                 [class.is-valid]="nameValidation.valid">
                 <!-- Error message -->
                 <small id="name" class="form-text invalid-feedback"
-                  *ngIf="nameValidation.errors?.required"> User name is required
+                  *ngIf="nameValidation?.errors?.required"> User name is required
                 </small>
                 <small id="name" class="form-text invalid-feedback"
-                  *ngIf="nameValidation.errors?.minlength"> Minimum length should be 3 character!
+                  *ngIf="nameValidation?.errors?.minlength"> Minimum length should be 3 character!
                 </small>
               </div>
 
