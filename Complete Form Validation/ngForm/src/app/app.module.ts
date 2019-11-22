@@ -1,20 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+
+// Form module imported
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
+// List of component's
 import { AppComponent } from './app.component';
 import { TemplateDrivenFormComponent } from './form-component/template-driven-form/template-driven-form.component';
 import { ReactiveFormComponent } from './form-component/reactive-form/reactive-form.component';
 import { FormArrayComponent } from './form-component/form-array/form-array.component';
+import { TestComponent } from './form-component/test/test.component';
+import { CompleteFormComponent } from './form-component/template-driven-form/complete-form/complete-form.component';
+import { CustomValidationComponent } from './form-component/template-driven-form/custom-validation/custom-validation.component';
 
-import { FooterComponent } from './footer/footer.component';
+
+// ngx-bootstrap files for date picker
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TestComponent } from './form-component/test/test.component';
-import { CustomSelectorsDirective } from './form-component/template-driven-form/custom-selectors.directive';
-import { PasswordMatchValidatorDirective } from './form-component/template-driven-form/password-match-validator.directive';
+import { ReactiveCompleteFormComponent } from './form-component/reactive-form/reactive-complete-form/reactive-complete-form.component';
+import { ReactiveCustomValidationComponent } from './form-component/reactive-form/reactive-custom-validation/reactive-custom-validation.component';
+import { TdfSimpleValidationComponent } from './form-component/template-driven-form/tdf-simple-validation/tdf-simple-validation.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +29,12 @@ import { PasswordMatchValidatorDirective } from './form-component/template-drive
     TemplateDrivenFormComponent,
     ReactiveFormComponent,
     FormArrayComponent,
-    FooterComponent,
     TestComponent,
-    CustomSelectorsDirective,
-    PasswordMatchValidatorDirective
+    CompleteFormComponent,
+    CustomValidationComponent,
+    ReactiveCompleteFormComponent,
+    ReactiveCustomValidationComponent,
+    TdfSimpleValidationComponent
   ],
   imports: [
     BrowserModule,

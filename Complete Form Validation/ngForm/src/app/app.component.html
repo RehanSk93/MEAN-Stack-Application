@@ -1,32 +1,49 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/template-driven-form']" routerLinkActive="active" >Angular Forms Example</a>
+
+    <!-- Branding Name or Home page links -->
+    <a class="navbar-brand"
+    routerLink='template-driven-form/tdf-complete-form-details'
+    routerLinkActive="active" >
+      Angular Complete Forms with Validation
+    </a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ml-auto">
+
+      <!-- TDF Component links -->
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/reactive-form']" routerLinkActive="active" >Reactive Form</a>
+        <a class="nav-link"
+        routerLink='template-driven-form/tdf-complete-form-details'
+        routerLinkActive="active" >TDF Form</a>
       </li>
+
+      <!-- Reactive form component links -->
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/template-driven-form']" routerLinkActive="active" >TDF Form</a>
+        <a class="nav-link" routerLink="reactive-form/reactive-complete-form-details" routerLinkActive="active">Reactive
+          Form</a>
       </li>
+
+      <!-- Form Array component links -->
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/form-array']" routerLinkActive="active" >Form Array</a>
       </li>
+
+      <!-- Testing purpose links -->
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/test']" routerLinkActive="active" >Testing</a>
       </li>
+
     </ul>
   </div>
   </div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
   <router-outlet></router-outlet>
 </div>
-
-<app-footer></app-footer>
 

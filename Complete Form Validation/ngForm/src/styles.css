@@ -2,3 +2,12 @@
 body {
   background-color: #b3b3ff;
 }
+
+.tdf-bg-primary{
+  background-color: #4da3ff !important;
+}
+
+.reactive-bg-primary{
+  background-color: #809fff !important;
+}
+
