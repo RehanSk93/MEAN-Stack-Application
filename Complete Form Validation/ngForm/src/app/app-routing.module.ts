@@ -10,6 +10,10 @@ import { ReactiveCompleteFormComponent } from './form-component/reactive-form/re
 // tslint:disable-next-line: max-line-length
 import { ReactiveCustomValidationComponent } from './form-component/reactive-form/reactive-custom-validation/reactive-custom-validation.component';
 import { TdfSimpleValidationComponent } from './form-component/template-driven-form/tdf-simple-validation/tdf-simple-validation.component';
+// tslint:disable-next-line: max-line-length
+import { TdfNestedFormValidationComponent } from './form-component/template-driven-form/tdf-nested-form-validation/tdf-nested-form-validation.component';
+// tslint:disable-next-line: max-line-length
+import { PasswordMatchValidationComponent } from './form-component/template-driven-form/password-match-validation/password-match-validation.component';
 
 const routes: Routes = [
 
@@ -17,6 +21,8 @@ const routes: Routes = [
   { path: 'template-driven-form', component: TemplateDrivenFormComponent, children: [
       { path: 'tdf-complete-form-details', component: CompleteFormComponent },
       { path: 'tdf-custom-validation', component: CustomValidationComponent },
+      { path: 'tdf-nested-form-validation', component: TdfNestedFormValidationComponent },
+      { path: 'tdf-password-match-validation', component: PasswordMatchValidationComponent },
       { path: 'tdf-simple-validation', component: TdfSimpleValidationComponent }
   ] },
 

@@ -22,6 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveCompleteFormComponent } from './form-component/reactive-form/reactive-complete-form/reactive-complete-form.component';
 import { ReactiveCustomValidationComponent } from './form-component/reactive-form/reactive-custom-validation/reactive-custom-validation.component';
 import { TdfSimpleValidationComponent } from './form-component/template-driven-form/tdf-simple-validation/tdf-simple-validation.component';
+import { TdfNestedFormValidationComponent } from './form-component/template-driven-form/tdf-nested-form-validation/tdf-nested-form-validation.component';
+import { PasswordMatchValidationComponent } from './form-component/template-driven-form/password-match-validation/password-match-validation.component';
+import { PasswordMatchDirective } from './form-component/template-driven-form/password-match-validation/password-match.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { TdfSimpleValidationComponent } from './form-component/template-driven-f
     CustomValidationComponent,
     ReactiveCompleteFormComponent,
     ReactiveCustomValidationComponent,
-    TdfSimpleValidationComponent
+    TdfSimpleValidationComponent,
+    TdfNestedFormValidationComponent,
+    PasswordMatchValidationComponent,
+    PasswordMatchDirective
   ],
   imports: [
     BrowserModule,
