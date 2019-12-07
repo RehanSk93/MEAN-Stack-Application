@@ -1,0 +1,24 @@
+mat-toolbar {
+  margin-bottom: 30px;
+}
+
+mat-toolbar-row ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+mat-toolbar-row ul li {
+  display: inline;
+}
+
+
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,13 @@
+/* ":host" is use to select your entire component */
+:host {
+  display: block;
+  margin-top: 2rem;
+}
+
+.text-info {
+  text-align: center;
+}
+
+mat-spinner{
+  margin: auto;
+}

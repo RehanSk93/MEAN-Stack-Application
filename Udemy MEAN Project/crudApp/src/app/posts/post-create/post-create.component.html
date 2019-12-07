@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-spinner *ngIf='isLoading' ></mat-spinner>
+  <form #formDetails='ngForm' (submit)='onSavePost(formDetails)' *ngIf='!isLoading'>
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="Title"
+      autocomplete="off"
+      [ngModel]='updatePost?.title'
+      name="title"
+      #titleValidate='ngModel'
+      required
+      minlength="3" >
+      <mat-error *ngIf="titleValidate?.errors?.required && titleValidate.touched">
+        Field is required
+      </mat-error>
+      <mat-error *ngIf="titleValidate?.errors?.minlength && titleValidate.touched">
+        length should be at least 3 character
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea
+      matInput
+      placeholder="Content"
+      autocomplete="off"
+      [ngModel]='updatePost?.content'
+      #contentValidate='ngModel'
+      name="content"
+      required></textarea>
+      <mat-error *ngIf="contentValidate.invalid && contentValidate.touched">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-position">
+      <button mat-raised-button
+      color="primary" type="submit">Save</button>
+    </div>
+  </form>
+</mat-card>
