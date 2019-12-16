@@ -10,3 +10,22 @@ mat-form-field {
 mat-spinner {
   margin: auto;
 }
+
+
+.file-picker {
+  margin: 10px 0px;
+}
+
+input[type='file'] {
+  visibility: hidden;
+}
+
+.image-preview {
+  width: 100px;
+  height: 100px;
+  margin: 10px 0;
+}
+
+.image-preview img {
+  height: 100%;
+}

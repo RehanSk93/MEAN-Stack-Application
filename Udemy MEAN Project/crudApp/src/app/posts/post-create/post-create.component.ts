@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { PostsService } from '../posts.service';
 import { Post } from '../post.model';
@@ -14,13 +14,27 @@ export class PostCreateComponent implements OnInit {
 
   updatePost: Post;
   isLoading = false;
+  form: FormGroup;
+  imagePreview: any;
   private mode = 'create';
   private postID: string;
+
+  // Validation methods
+  get titleValidation() {
+    return this.form.controls.title;
+  }
 
   constructor(private postsService: PostsService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    // Initializing the form
+    this.form = new FormGroup({
+      title: new FormControl(null, [Validators.required, Validators.minLength(3)] ),
+      content: new FormControl(null, [Validators.required]),
+      image: new FormControl(null, [Validators.required])
+    });
+
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
@@ -34,6 +48,10 @@ export class PostCreateComponent implements OnInit {
                 title: responseData.title,
                 content: responseData.content
               };
+              this.form.setValue({
+                title: this.updatePost.title,
+                content: this.updatePost.content
+              });
             });
       } else {
         this.mode = 'create';
@@ -42,8 +60,22 @@ export class PostCreateComponent implements OnInit {
     });
   }
 
-  onSavePost(form: NgForm) {
-    if (form.invalid) {
+  // Pick the image from the input field
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({image: file});
+    this.form.get('image').updateValueAndValidity();
+
+    // Image preview code
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  onSavePost() {
+    if (this.form.invalid) {
       return;
     }
 
@@ -52,11 +84,11 @@ export class PostCreateComponent implements OnInit {
 
     // Check mode first.......
     if (this.mode === 'create') {
-      this.postsService.addPost(form.value.title, form.value.content);
+      this.postsService.addPost(this.form.value.title, this.form.value.content);
     } else {
-      this.postsService.updatePost( this.postID, form.value.title, form.value.content );
+      this.postsService.updatePost( this.postID, this.form.value.title, this.form.value.content );
     }
-    form.resetForm();
+    this.form.reset();
   }
 
 }

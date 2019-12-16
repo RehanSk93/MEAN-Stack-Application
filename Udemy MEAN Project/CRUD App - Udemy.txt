@@ -1,0 +1,513 @@
+				Important Information
+--------------------------------------------------------------------------------
+
+
+Video No - 19
+	
+	create-post.component.html
+		
+		<textarea  rows="6" [value]='newPost' #textValue></textarea>
+		<hr>
+		<button type="button" (click)="onAddPosts(textValue)">Save</button>
+
+
+
+	create-post.component.ts
+	
+    export class CreatePostComponent implements OnInit {
+
+      newPost = 'NO Content';
+
+      constructor() { }
+
+      ngOnInit() {
+      }
+
+      onAddPosts(val: HTMLTextAreaElement) {
+        console.dir(val);
+        console.log(val.value)
+      }
+    }
+
+
+
+
+--------------------------------------------------------------------------------    
+                          Start to work with backend
+--------------------------------------------------------------------------------    
+
+
+
+
+@ note:-    Root folder is crudApp folder
+
+@ Step - 1
+  => Create a folder inside root folder name it "backend"
+
+
+@ Step - 2
+  => create a file inside root folder and name it "server.ja"
+
+
+@ Step - 3
+  => Write some code inside "server.js" file
+  
+  => Code Example 
+      // Step - 1
+      const http = require('http');
+
+      // Step - 2
+      const server = http.createServer((req, res) => {
+        res.end('this is my first response');
+      });
+
+
+      // Step - 3   =>  "process.env.PORT" is production environment
+      server.listen(process.env.PORT || 3000);
+      // step - 4    => Execute your file => node server.js
+
+
+
+@ Step - 4
+  => Execute your server.js file by following this command
+      - node server.js
+  => you see the output on your browser "http://localhost:3000/" 
+
+
+
+@ Step - 5
+  => Install express server inside your project (followed root folder)
+      - npm install --save express
+
+
+
+
+@ Step - 6
+  => create a file inside backend folder and name it "app.js"
+
+
+
+
+@ Step - 7
+  => Write some code inside "app.js" file
+
+  => Code Example
+  // Step - 1
+  const express = require('express');
+
+  // Step - 2
+  const app = express();
+
+
+  // Step - 3
+  app.use((req, res, next) => {
+    console.log('First middleware');
+    next();
+  });
+
+  app.use((req, res, next) => {
+    res.send('Hello from express');
+  });
+
+  // step - 4
+  module.exports = app;
+
+
+
+
+@ Step - 8
+  => import "app.js" file inside "server.js" file and write some useful code
+
+  => Code Example
+  // Step - 1
+  const http = require('http');
+
+  // Step - 4   => import express file inside this file
+  const app = require('./backend/app');
+
+  // Step - 5
+  const port = process.env.PORT || 3000;
+
+  // Step - 6
+  app.set('port', port);
+
+  // step - 7
+  const server = http.createServer(app);
+
+  // Step - 2
+  // const server = http.createServer((req, res) => {
+  //   res.end('this is my first response');
+  // });
+
+
+  // Step - 3   =>  "process.env.PORT" is production environment
+  server.listen(port);
+
+
+
+
+@ Step - 8
+  => improve the "server.js" code
+
+  => code Example
+  const app = require("./backend/app");
+  const debug = require("debug")("node-angular");
+  const http = require("http");
+
+  const normalizePort = val => {
+    var port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+      // named pipe
+      return val;
+    }
+
+    if (port >= 0) {
+      // port number
+      return port;
+    }
+
+    return false;
+  };
+
+  const onError = error => {
+    if (error.syscall !== "listen") {
+      throw error;
+    }
+    const bind = typeof port === "string" ? "pipe " + port : "port " + port;
+    switch (error.code) {
+      case "EACCES":
+        console.error(bind + " requires elevated privileges");
+        process.exit(1);
+        break;
+      case "EADDRINUSE":
+        console.error(bind + " is already in use");
+        process.exit(1);
+        break;
+      default:
+        throw error;
+    }
+  };
+
+  const onListening = () => {
+    const addr = server.address();
+    const bind = typeof port === "string" ? "pipe " + port : "port " + port;
+    debug("Listening on " + bind);
+  };
+
+  const port = normalizePort(process.env.PORT || "3000");
+  app.set("port", port);
+
+  const server = http.createServer(app);
+  server.on("error", onError);
+  server.on("listening", onListening);
+  server.listen(port);
+
+
+
+
+
+@ step - 9
+  => install nodemon inside your project
+      - npm install --save-dev nodemon
+  
+  => we have to change something inside "package.js" file
+  
+  => code Example
+    {
+    "name": "crud-app",
+    "version": "0.0.0",
+    "scripts": {
+      "ng": "ng",
+      "start": "ng serve",
+      "build": "ng build",
+      "test": "ng test",
+      "lint": "ng lint",
+      "e2e": "ng e2e",
+      "start:server": "nodemon server.js"   // add this line for start server
+    },
+
+  => now, when you start your server type bellow command
+      - npm run start:server 
+
+
+
+
+
+@ step - 10
+  => we have to create our first api and pass some dummy data backend to frontend
+
+  => code Example app.js file
+    // Step - 3
+    app.use("/api/posts", (req, res, next) => {
+
+      // dummy data passing here
+      const posts = [
+        { id: "56dhysr",
+          title: "First server side code",
+          content: "This is coming from server"
+        },
+        { id: "hsgdy653",
+          title: "Second server side code",
+          content: "This is coming from server!"
+        },
+        { id: "52735dgfhy",
+          title: "Third server side code",
+          content: "This is coming from server!!"
+        }
+      ]
+
+      // passing data through json format
+      res.status(200).json({
+        message: 'posts fetch successfully',
+        posts: posts
+      });
+      
+    });
+
+
+
+
+@ step - 11
+  => install chrome extension "JSONView" for formating json data showing beautifully
+
+
+
+@ step - 12
+  => app/posts/posts.service.ts 
+
+  => Now, very important task we have to do....
+  => fetching data from server to our angular project through api...
+  
+  => Code Example 
+    import { Injectable } from '@angular/core';
+    import { HttpClient } from '@angular/common/http';
+
+    import { Post } from './post.model';
+
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class PostsService {
+
+      // store post data inside an array
+      public posts: Post[] = [];
+
+      // fetch data through this api
+      readonly postsURL = 'http://localhost:3000/api/posts';
+
+      constructor(private http: HttpClient) { }
+
+      // get all posts instance in an array using speared operator (...)
+      getPosts() {
+        return this.http.get<{message: string, posts: Post[]}>(this.postsURL);
+      }
+
+      // add new post
+      addPost(postData: Post) {
+        // push your post using push method
+        this.posts.push(postData);
+      }
+
+    }
+
+
+
+
+@ step - 12
+  => we have to implementing CORS inside "app.js" file for communicate both server
+
+  => code example
+      // Step - 4   => Implementing CORS
+      app.use((req, res, next) => {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader(
+          "Access-Control-Allow-Headers",
+          "Origin, X-Requested-With, Content-Type, Accept"
+        );
+        res.setHeader(
+          "Access-Control-Allow-Methods",
+          "GET, POST, PATCH, DELETE, OPTIONS"
+        );
+        next();
+      });
+
+
+
+
+
+@ step - 13
+  => Now we have to post data from our Angular app to server.
+  => So, we have to install body-parser inside our project (root folder)
+  => followed by this command
+      - npm install --save body-parser 
+
+  => after installation add some code inside "app.js" file
+
+  => Code Example      
+      // Step - 5
+      const bodyParser = require('body-parser');
+
+      // Step - 2
+      const app = express();
+
+      // Step - 6
+      app.use(bodyParser.json());
+      app.use(bodyParser.urlencoded({ extended: false }));
+  
+
+  => Now we can pass data frontend to backend and console data for testing
+  => Code Example 
+      
+
+
+
+
+--------------------------------------------------------------------------------    
+                          Its time to Work with MongoDB
+--------------------------------------------------------------------------------    
+
+
+@ note - 
+  => We will use MongoDB  Atlas cloud features 
+
+
+
+@ Details - 
+  => login Details
+        Email ID - skazam1993@gmail.com
+        PW - default   
+
+  => User Details
+        username - rehanSk
+        pw - 9qfhvTM8rdQubnzD
+        User Privileges - Atlas admin        
+
+
+
+
+
+@ Step - 1
+  => Install mongoose in your root folder
+      - npm install mongoose --save
+
+
+
+@ Step - 2
+  => Create a folder inside "backend" folder and name it "models" 
+  => Inside models folder create a file and name it "post.js" or any name you like.
+  => Write some code
+
+  => Code Example
+      // Step - 1
+      const mongoose = require('mongoose');
+
+      // Step - 2
+      const postSchema = mongoose.Schema({
+        title: { type: String, require: true },
+        content: { type: String, require: true }
+      });
+
+      // Step - 3
+      module.exports = mongoose.model('Post', postSchema);
+
+
+
+@ Step - 3
+  => import this "post.js" file inside "app.js" file.
+  => Write some code for store data into mongoDB
+
+  => Code Example - 
+      // Step - 8
+      const Post = require('./models/post');
+
+      // Step - 7     =>  Post request for storing data to the database
+      app.post("/api/posts", (req, res, next) => {
+        // const post = req.body;
+        // console.log(post);
+
+        // Step - 9
+        const post = new Post({
+          title: req.body.title,
+          content: req.body.content
+        });
+        console.log(post);
+
+        res.status(201).json({
+          message: "Post added successfully"
+        });
+      });
+
+
+
+@ Step - 4
+  => Connect your app to mongoDB-Atlas database followed by this code
+  => Write code inside app.js file
+  
+  => Code Example
+      // Step - 10
+      const mongoose = require('mongoose');
+
+      // Step - 11
+      mongoose.connect("mongodb+srv://rehanSk:9qfhvTM8rdQubnzD@cluster0-igodz.mongodb.net/CRUD-DB?retryWrites=true&w=majority").then(() => {
+        console.log('Connection succeed to mongoDB atlas database!');
+      }).catch(() => {
+        console.log('Connection failed!');
+      })
+
+
+      // Step - 7     =>  Post request for storing data to the database
+      app.post("/api/posts", (req, res, next) => {
+        // const post = req.body;
+        // console.log(post);
+
+        // Step - 9
+        const post = new Post({
+          title: req.body.title,
+          content: req.body.content
+        });
+        console.log(post);
+
+        // step - 12
+        post.save();
+
+        res.status(201).json({
+          message: "Post added successfully"
+        });
+      });
+
+
+@ Step - 5    !important steps
+  => go to mongoDB atlas cluster for some changes
+  => check mongo shell is installed or not in your system
+      - mongo --version
+  => if installed then run this command
+      - mongo "mongodb+srv://cluster0-igodz.mongodb.net/test" --username rehanSk --password 9qfhvTM8rdQubnzD
+
+  => Now, you are connected to the mongo atlas cluster. 
+  => now you can see your database through command prompt
+
+
+
+
+
+@ Step - 6
+  => Now fetching data from database mongoDB Atlas.
+
+  => Code Example
+        // Step - 3
+        app.get("/api/posts", (req, res, next) => {
+
+          // Step - 13
+          Post.find().then(results => {
+            res.status(200).json({
+              message: 'post fetch successfully from mongoDB Atlas',
+              posts: results
+            });
+          });
+
+        });
+
+
+
+@ Step - 8
