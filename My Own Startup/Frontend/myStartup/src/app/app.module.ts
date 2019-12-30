@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { BigFooterComponent } from './component/footer/big-footer/big-footer.component';
 import { SmallFooterComponent } from './component/footer/small-footer/small-footer.component';
+import { BigBannerComponent } from './component/home/big-banner/big-banner.component';
+import { AboutUsComponent } from './component/home/about-us/about-us.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     BigFooterComponent,
-    SmallFooterComponent
+    SmallFooterComponent,
+    BigBannerComponent,
+    AboutUsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
