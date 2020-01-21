@@ -8,7 +8,7 @@ const User = require('../models/user');
 // Pagination from server side
 router.get('/pagination', (req, res) => {
     // example array of 150 items to be paged
-    const items = [...Array(5).keys()].map(i => ({ id: (i + 1), name: 'Item ' + (i + 1) }));
+    const items = [...Array(150).keys()].map(i => ({ id: (i + 1), name: 'Item ' + (i + 1) }));
 
     // get page from query params or default to first page
     const page = parseInt(req.query.page) || 1;
