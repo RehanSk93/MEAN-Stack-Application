@@ -1,122 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
-// create a function for verify token
-function verifyToken(req, res, next){
-    if(!req.headers.authorization) {
-        return res.status(401).send('Unauthorized Request');
-    }
-    
-    const token = req.headers.authorization.split(' ')[1];
-    if(token === null){
-        return res.status(401).send('Unauthorized Request');
-    }
-    
-    const payload = jwt.verify(token, 'secretKey');
-    
-    console.log('payload', payload);
-
-    if(!payload){
-        return res.status(401).send('Unauthorized Request');
-    }
-    next();
-}
 
 
-
-
-router.post('/register', (req, res) => {
-    const userData = req.body;
-    let user = new User(userData);
-    user.save((err, docs) => {
-        if(!err) {
-            // generate web token using jwt
-            let payload = { subject: docs._id };
-            let token = jwt.sign(payload, 'secretKey');
-
-            res.status(200).json({
-                message: 'Data Registered',
-                data: docs,
-                token: token
-            });
-        } else {
-            console.log('Error in registering User data');
-        }
-    });
-});
-
-router.post('/login', (req, res) => {
-    let userData = req.body;
-
-    User.findOne({email: userData.email}, (err, docs) => {
-        if(err){
-            console.log('Error occurs in login ', err);
-        } else {
-            if(!docs) {
-                res.status(401).send('Invalid Email')
-            } else 
-            if(docs.password !== userData.password) {
-                res.status(401).send('Invalid Password')
-            } else {    
-                // generate web token using jwt
-                let payload = { subject: docs._id };
-                let token = jwt.sign(payload, 'secretKey');
-
-                res.status(200).json({
-                    message: 'User Login',
-                    data: docs,
-                    token: token
-                });
-            }
-        }
-    });
-});
-
-
-router.get('/special', verifyToken, (req, res) => {
-    let special = [
-        { "id": "1", "name": "Rehan Sk", "post": "UI Developer" },
-        { "id": "2", "name": "Evita Jain", "post": "Geography" },
-        { "id": "3", "name": "Debasish Jana", "post": "History" },
-        { "id": "4", "name": "Manisankar", "post": "UI Developer" },
-        { "id": "5", "name": "Uttam pandab", "post": "History" },
-        { "id": "6", "name": "Subhahish", "post": "Geography" },
-        { "id": "7", "name": "Susmita", "post": "UI Developer" },
-        { "id": "8", "name": "Ruksana Parvin", "post": "Geography" }
-    ]
-
-    res.status(200).json({
-        "message": "Special data",
-        "data": special
-    });
-});
-
-
-router.get('/events', (req, res) => {
-    let events = [
-        { "id": "1", "name": "Rehan Sk", "post": "UI Developer" },
-        { "id": "2", "name": "Evita Jain", "post": "Geography" },
-        { "id": "3", "name": "Debasish Jana", "post": "History" },
-        { "id": "4", "name": "Manisankar", "post": "UI Developer" },
-        { "id": "5", "name": "Uttam pandab", "post": "History" },
-        { "id": "6", "name": "Subhahish", "post": "Geography" },
-        { "id": "7", "name": "Susmita", "post": "UI Developer" },
-        { "id": "8", "name": "Ruksana Parvin", "post": "Geography" }
-    ]
-
-    res.status(200).json({
-        "message": "Events data",
-        "data": events
-    });
-});
-
-
-
-
-// Pagination 
+// Pagination from server side
 router.get('/pagination', (req, res) => {
     // example array of 150 items to be paged
     const items = [...Array(5).keys()].map(i => ({ id: (i + 1), name: 'Item ' + (i + 1) }));
@@ -136,9 +25,7 @@ router.get('/pagination', (req, res) => {
 })
 
 
-
-
-// Pager object 
+// Pager function for identifying page details
 function paginate(
     totalItems,
     currentPage = 1,

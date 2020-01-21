@@ -5,7 +5,7 @@ const cors = require('cors');
 const dbCon = require('./dbCon');
 const api = require('./routes/api');
 
-const PORT = 3030;
+const PORT = 3000;
 
 const app = express();
 app.use(cors());
